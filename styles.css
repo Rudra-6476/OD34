@@ -56,7 +56,7 @@
   --radius-full: 9999px;
   
   /* Container */
-  --container-width: 1280px;
+  --container-width: min(93vw, 1400px);
 }
 
 /* ==========================================================================
@@ -360,7 +360,20 @@ h1, h2, h3, h4, h5, h6 {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
+  gap: 0.75rem;
+  text-decoration: none;
+  flex-shrink: 1;
+  min-width: 0;
+}
+
+.brand-logo-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--color-primary);
+  box-shadow: 0 0 15px rgba(255, 140, 0, 0.4);
+  flex-shrink: 0;
 }
 
 .logo-text {
@@ -488,6 +501,10 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 0 15px rgba(255, 140, 0, 0.3);
   margin-bottom: 1rem;
   animation: ribbonPulse 3s infinite alternate;
+  max-width: 100%;
+  white-space: normal;
+  line-height: 1.35;
+  box-sizing: border-box;
 }
 
 .hub-promo-ribbon span.highlight {
@@ -511,22 +528,28 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-full);
   font-size: 0.8rem;
   color: var(--text-secondary);
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-title {
-  font-size: clamp(2.8rem, 6vw, 4.4rem);
+  font-size: clamp(1.85rem, 5.5vw, 4.2rem);
   font-weight: 900;
   line-height: 1.05;
   text-transform: uppercase;
   margin-bottom: 1.25rem;
   letter-spacing: -0.03em;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-subtitle {
-  font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+  font-size: clamp(1rem, 2.2vw, 1.5rem);
   color: var(--color-primary);
   font-weight: 700;
   margin-bottom: 1rem;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .hero-description {
@@ -676,10 +699,11 @@ h1, h2, h3, h4, h5, h6 {
 .hub-spotlight-card::before {
   content: '';
   position: absolute;
-  top: -50%;
-  right: -20%;
-  width: 350px;
-  height: 350px;
+  top: -50px;
+  right: -50px;
+  width: 300px;
+  height: 300px;
+  max-width: 100%;
   background: radial-gradient(circle, rgba(255, 140, 0, 0.15) 0%, transparent 70%);
   pointer-events: none;
 }
@@ -2107,47 +2131,249 @@ textarea.form-control {
   font-weight: 700;
 }
 
-/* Floating Action Button (Mobile Call, Query, Map & Book) */
+/* Floating Action Bar (Mobile Call, Insta, Query, Map & Book) */
 .floating-mobile-bar {
   display: none;
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(5, 5, 5, 0.96);
-  backdrop-filter: blur(15px);
+  background: rgba(8, 8, 12, 0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-top: 1px solid rgba(255, 140, 0, 0.35);
-  padding: 0.6rem 0.75rem;
-  z-index: 90;
-  box-shadow: 0 -5px 25px rgba(0,0,0,0.85);
+  padding: 0.45rem 0.5rem;
+  z-index: 999;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.9);
 }
 
 .floating-mobile-grid {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  gap: 0.35rem;
+  gap: 0.25rem;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.f-btn {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0.35rem 0.15rem !important;
+  border-radius: var(--radius-sm) !important;
+  font-size: 0.68rem !important;
+  font-weight: 700 !important;
+  color: var(--text-white) !important;
+  text-decoration: none !important;
+  border: 1px solid var(--border-subtle) !important;
+  background: rgba(255, 255, 255, 0.05) !important;
+  transition: all var(--transition-fast) !important;
+  cursor: pointer !important;
+  line-height: 1.1 !important;
+  gap: 0.2rem !important;
+  min-width: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.02em !important;
+}
+
+.f-btn svg {
+  width: 15px !important;
+  height: 15px !important;
+  flex-shrink: 0 !important;
+}
+
+.f-btn-call {
+  background: rgba(255, 255, 255, 0.08) !important;
+  color: var(--text-white) !important;
+}
+
+.f-btn-insta {
+  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 50%, #fcb045 100%) !important;
+  color: #FFFFFF !important;
+  border: none !important;
+}
+
+.f-btn-query {
+  background: rgba(255, 140, 0, 0.12) !important;
+  color: var(--color-primary) !important;
+  border-color: rgba(255, 140, 0, 0.3) !important;
+}
+
+.f-btn-map {
+  background: rgba(255, 140, 0, 0.18) !important;
+  color: var(--color-primary) !important;
+  border-color: rgba(255, 140, 0, 0.4) !important;
+}
+
+.f-btn-book {
+  background: linear-gradient(135deg, #FF9E1B 0%, #FF8C00 100%) !important;
+  color: #000000 !important;
+  font-weight: 800 !important;
+  border: none !important;
+  box-shadow: 0 2px 10px rgba(255, 140, 0, 0.4) !important;
+}
+
+@media (max-width: 360px) {
+  .f-btn {
+    font-size: 0.6rem !important;
+    padding: 0.3rem 0.1rem !important;
+  }
+  .f-btn svg {
+    width: 13px !important;
+    height: 13px !important;
+  }
 }
 
 /* ==========================================================================
-   RESPONSIVE DESIGN
+   RESPONSIVE DESIGN SYSTEM
    ========================================================================== */
 
-@media (max-width: 1024px) {
+/* --- 1. Large Laptops & Desktops (max-width: 1200px) --- */
+@media (max-width: 1200px) {
+  .nav-links {
+    gap: 1.15rem;
+  }
+  .nav-link {
+    font-size: 0.875rem;
+  }
+  .nav-actions .btn-secondary,
+  .nav-actions .btn-map {
+    display: none; /* Hide secondary buttons to ensure Book Now and links never overflow */
+  }
+  .hero-grid {
+    gap: 2.5rem;
+  }
+  .widget-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .widget-grid .btn {
+    grid-column: span 2;
+  }
+}
+
+/* --- 2. Tablets & Small Laptops (max-width: 992px) --- */
+@media (max-width: 992px) {
+  .top-bar {
+    display: none;
+  }
+  
+  .navbar {
+    padding: 0.25rem 0;
+  }
+
+  .nav-container {
+    padding: 0.75rem 0;
+  }
+  
+  .nav-links {
+    position: fixed;
+    top: 68px;
+    left: -100%;
+    width: 100%;
+    height: calc(100vh - 68px);
+    background: rgba(5, 5, 8, 0.98);
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 2.5rem 1.5rem;
+    gap: 1.5rem;
+    transition: left var(--transition-normal);
+    z-index: 99;
+    overflow-y: auto;
+    border-right: 1px solid rgba(255, 140, 0, 0.2);
+  }
+  
+  .nav-links.active {
+    left: 0;
+  }
+
+  .nav-link {
+    font-size: 1.15rem;
+    padding: 0.5rem 1rem;
+    text-align: center;
+  }
+  
+  .nav-actions .btn {
+    display: none;
+  }
+  
+  .mobile-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .hero-section {
+    padding: 2.5rem 0 3.5rem;
+    min-height: auto;
+  }
+  
   .hero-grid {
     grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-badge-container {
+    justify-content: center;
+  }
+
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-cta-group {
+    justify-content: center;
+  }
+
+  .hero-stats {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
+
+  .hero-visual {
+    max-width: 640px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .booking-widget-section {
+    margin-top: 1rem;
+    margin-bottom: 4rem;
   }
 
   .spotlight-cars-grid {
     grid-template-columns: 1fr;
   }
-  
-  .widget-grid {
-    grid-template-columns: repeat(2, 1fr);
+
+  .spotlight-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.25rem;
   }
-  
-  .widget-grid .btn {
-    grid-column: span 2;
+
+  .spotlight-header-actions {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
   
   .steps-grid {
@@ -2164,8 +2390,130 @@ textarea.form-control {
     gap: 2.5rem;
   }
   
+  .about-image-card {
+    max-width: 580px;
+    margin: 0 auto;
+  }
+
+  .contact-form-card {
+    padding: 2rem 1.5rem;
+  }
+
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+
+  .floating-mobile-bar {
+    display: block;
+  }
+  
+  body {
+    padding-bottom: 70px;
+  }
+}
+
+/* --- 3. Standard Mobile (max-width: 768px) --- */
+@media (max-width: 768px) {
+  .hero-title {
+    font-size: clamp(2rem, 6.5vw, 3rem);
+  }
+
+  .hero-car-card {
+    max-width: 100%;
+  }
+
+  .hero-car-card img {
+    height: 240px;
+  }
+
+  .hero-floating-tag {
+    position: static;
+    margin: 0.75rem;
+    padding: 0.85rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+    text-align: center;
+    border-radius: var(--radius-md);
+  }
+
+  .floating-tag-info h4 {
+    justify-content: center;
+    font-size: 0.95rem;
+  }
+
+  .floating-tag-info p {
+    font-size: 0.8rem;
+  }
+
+  .floating-tag-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 0.35rem;
+  }
+
+  .floating-tag-actions .btn {
+    padding: 0.45rem 0.2rem !important;
+    font-size: 0.75rem !important;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .hub-spotlight-card {
+    padding: 1.75rem 1.25rem;
+  }
+  
+  .cars-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .car-card-body {
+    padding: 1.25rem 1rem;
+  }
+
+  .pricing-banner {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 1.25rem 1rem;
+    gap: 1.25rem;
+  }
+
+  .pricing-banner-text {
+    max-width: 100%;
+  }
+
+  .duration-toggle-wrap {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .duration-toggle-btn {
+    flex: 1;
+    justify-content: center;
+    padding: 0.6rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-window {
+    width: 95vw;
+    max-height: 90vh;
+    border-radius: var(--radius-lg);
+  }
+
+  .modal-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .modal-body {
+    padding: 1.25rem 1rem;
+  }
+
+  .query-preset-grid {
+    grid-template-columns: 1fr;
   }
 
   .map-modal-info {
@@ -2173,77 +2521,200 @@ textarea.form-control {
   }
 }
 
-@media (max-width: 768px) {
-  .top-bar {
-    display: none;
+/* --- 4. Compact Mobile & Portrait Phones (max-width: 540px) --- */
+@media (max-width: 540px) {
+  .container {
+    padding: 0 1rem;
   }
-  
-  .nav-links {
-    position: fixed;
-    top: 70px;
-    left: -100%;
-    width: 100%;
-    height: calc(100vh - 70px);
-    background: rgba(5, 5, 5, 0.98);
-    backdrop-filter: blur(25px);
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 2rem;
-    transition: left var(--transition-normal);
-    z-index: 99;
+
+  .brand-logo {
+    max-width: calc(100% - 48px);
   }
-  
-  .nav-links.active {
-    left: 0;
+
+  .logo-title {
+    font-size: clamp(1.1rem, 4vw, 1.35rem);
   }
-  
-  .nav-actions .btn {
-    display: none;
+
+  .logo-subtitle {
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
   }
-  
-  .mobile-toggle {
-    display: block;
+
+  .hub-promo-ribbon {
+    font-size: 0.78rem;
+    padding: 0.4rem 0.85rem;
   }
-  
+
   .hero-title {
-    font-size: 2.5rem;
+    font-size: clamp(1.8rem, 7.5vw, 2.4rem);
+    line-height: 1.1;
   }
-  
+
+  .hero-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .hero-cta-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
   .hero-stats {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.35rem;
+  }
+
+  .stat-item {
+    padding: 0.6rem 0.3rem;
+  }
+
+  .stat-number {
+    font-size: 1.05rem;
+  }
+
+  .stat-label {
+    font-size: 0.62rem;
+  }
+
+  .hub-spotlight-card {
+    padding: 1.25rem 0.85rem;
+  }
+
+  .spotlight-header-left h3 {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .spotlight-header-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .spotlight-header-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .widget-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
 
-  .query-preset-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .cars-grid {
-    grid-template-columns: 1fr;
-  }
-  
-  .widget-grid {
-    grid-template-columns: 1fr;
-  }
-  
   .widget-grid .btn {
     grid-column: span 1;
   }
 
-  .spotlight-cars-grid {
-    grid-template-columns: 1fr;
+  .booking-widget-card {
+    padding: 1.25rem 1rem;
   }
-  
+
+  .fleet-filters {
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .filter-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+
   .footer-grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
   }
-  
-  .floating-mobile-bar {
-    display: block;
+
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
   }
-  
-  body {
-    padding-bottom: 70px;
+
+  .modal-car-summary {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+
+  .modal-car-thumb {
+    width: 100%;
+    max-width: 220px;
+    height: 110px;
+    margin: 0 auto;
+  }
+}
+
+/* --- 5. Micro Screen & Foldables (max-width: 380px) --- */
+@media (max-width: 380px) {
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .logo-title {
+    font-size: 1.05rem;
+  }
+
+  .logo-subtitle {
+    font-size: 0.55rem;
+    letter-spacing: 0.04em;
+  }
+
+  .hero-title {
+    font-size: 1.65rem;
+  }
+
+  .hero-car-card img {
+    height: 180px;
+  }
+
+  .floating-tag-actions .btn {
+    font-size: 0.68rem !important;
+    padding: 0.4rem 0.15rem !important;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .hero-stats .stat-item:last-child {
+    grid-column: span 2;
+  }
+
+  .stat-number {
+    font-size: 0.98rem;
+  }
+
+  .car-specs-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.25rem;
+    padding: 0.5rem 0.25rem;
+  }
+
+  .spec-item {
+    font-size: 0.7rem;
+    gap: 0.2rem;
+  }
+
+  .spec-item svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .price-value {
+    font-size: 1.15rem;
+  }
+
+  .floating-mobile-grid .f-btn {
+    padding: 0.35rem 0.1rem !important;
+  }
+
+  .f-btn-text {
+    font-size: 0.58rem !important;
   }
 }
