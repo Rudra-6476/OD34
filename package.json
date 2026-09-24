@@ -1,0 +1,19 @@
+{
+  "name": "od34-rental",
+  "version": "1.0.0",
+  "description": "OD34 Rental - Self Drive Car Rental in Kalinga Nagar, Bhubaneswar, Odisha",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": ["car-rental", "self-drive", "bhubaneswar", "odisha"],
+  "author": "OD34 Rental",
+  "license": "ISC"
+}
